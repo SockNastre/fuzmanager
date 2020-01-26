@@ -56,10 +56,13 @@ int main(int argc, char *argv[])
                 fread(&audio, 1, audioSize, fuzFile);
 
                 // Writing lip
-                argv[2][strlen(argv[2]) - 3] = '\0';
-                char lipExt[] = "lip";
-                strncat(argv[2], &lipExt, 3);
-                fwrite(&lip, 1, sizeof(lip), fopen(argv[2], "wb+"));
+                if (input.lipSize != 0)
+                {
+                    argv[2][strlen(argv[2]) - 3] = '\0';
+                    char lipExt[] = "lip";
+                    strncat(argv[2], &lipExt, 3);
+                    fwrite(&lip, 1, sizeof(lip), fopen(argv[2], "wb+"));
+                }
 
                 // Writing audio, does not check what format audio is
                 argv[2][strlen(argv[2]) - 3] = '\0';
